@@ -1,7 +1,7 @@
 public class BMIModel {
 
 	private double bmicalc;
-	private String weightStatus = " ";
+	private String weightStatus = "";
 	
 	public void calcBMI(int height, int weight) {
 		this.bmicalc = 1.3 * (weight/Math.pow(height, 2.5));
