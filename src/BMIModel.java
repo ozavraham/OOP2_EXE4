@@ -17,4 +17,8 @@ public class BMIModel {
 		return this.bmicalc;
 	}
 	
+	public String getweightStatus() {
+		return this.weightStatus;
+	}
+	
 }
