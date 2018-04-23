@@ -1,11 +1,13 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BMIView extends JFrame{
 
-	final private JPanel topPanel = new JPanel();
-	private JLabel header;
+	final private  JPanel topPanel = new JPanel();
+	final private  JLabel header= new JLabel ("Welcome to BMI Calculator!");;
 
 	final private JPanel genderPanel = new JPanel();
 	private JLabel genderL;
@@ -17,7 +19,7 @@ public class BMIView extends JFrame{
 	private JLabel heightL;
 
 	final private JPanel bodyPanel = new JPanel();
-	private final String[] bodyChoise = {"Small", "Medium","Large"};
+	final private String[] bodyChoise = {"Small", "Medium","Large"};
 	private JComboBox bodyComboBox = new JComboBox(bodyChoise);
 
 	final private JPanel weightPanel = new JPanel();
@@ -26,6 +28,12 @@ public class BMIView extends JFrame{
 	final private JPanel agePanel = new JPanel();
 	private JTextField age = new JTextField(10); 
 	
+	final private Panel calcPanel = new Panel();
+	final private JButton confirm = new JButton ("Click to calculate BMI!");
+	public JLabel result1 = new JLabel ("");
+	public JLabel result2 = new JLabel ("");
+			
+	
 //	private JPanel calcPanel = new JPanel();
 //	private JButton calc;
 
@@ -33,19 +41,18 @@ public class BMIView extends JFrame{
 
 		// Setting up BMIView
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(700,700);
+		this.setSize(400, 600);
+		this.setLayout(new BorderLayout());
 		
-
-		JPanel bmiPanel = new JPanel();
-		bmiPanel.setLayout(new GridLayout(6, 1));
+		
+		Panel bmiPanel = new Panel();
+		bmiPanel.setLayout(new GridLayout(8, 1));
 		
 		/*
 		 * Header Panel
 		 */
-		header = new JLabel ("Welcome to BMI Calculator!");
 		topPanel.add(header);
 		topPanel.setVisible(true);
-		
 
 		/*
 		 * Gender Panel
@@ -54,12 +61,11 @@ public class BMIView extends JFrame{
 		genderPanel.add(genderL);
 		genderPanel.add(genderComboBox);
 		genderPanel.setVisible(true);
-		
 
 		/*
 		 * Height Panel
 		 */
-		heightL = new JLabel ("");
+		heightL = new JLabel("");
 		heightSlider = new JSlider();
 		heightSlider.setMajorTickSpacing(50);
 		heightSlider.setMinorTickSpacing(15);
@@ -70,10 +76,10 @@ public class BMIView extends JFrame{
 		heightSlider.addChangeListener(new javax.swing.event.ChangeListener() {
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				heightL.setText("You height: " + heightSlider.getValue() + " cm");
+				heightL.setText(heightSlider.getValue() + " cm");
 			}
 		});
-		heightPanel.add( new JLabel ("Height: "));
+		heightPanel.add(new JLabel ("Height: "));
 		heightPanel.add(heightSlider);
 		heightPanel.add(heightL);
 		heightPanel.setVisible(true);
@@ -98,23 +104,25 @@ public class BMIView extends JFrame{
 		agePanel.add(new JLabel ("Age: "));
 		agePanel.add(age);
 		agePanel.setVisible(true);
-		
+	
 		/*
 		 * Calculation Panel
 		 */
-		//calcPanel.add(calc);
-
+		
+		calcPanel.add(confirm);
+		calcPanel.add(result1);
+		calcPanel.add(result2);
+		
 		bmiPanel.add(topPanel);
 		bmiPanel.add(genderPanel);
 		bmiPanel.add(heightPanel);
 		bmiPanel.add(bodyPanel);
 		bmiPanel.add(weightPanel);
 		bmiPanel.add(agePanel);
-		//bmiPanel.add(calcPanel);
+		bmiPanel.add(calcPanel);
+		bmiPanel.setVisible(true);
 		this.add(bmiPanel);
-	
 		this.setVisible(true);
-
 	}
 	
 	public String getGender() {
