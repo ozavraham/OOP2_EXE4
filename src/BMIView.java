@@ -4,26 +4,26 @@ import java.awt.*;
 
 public class BMIView extends JFrame{
 
-	private JPanel topPanel = new JPanel();
+	final private JPanel topPanel = new JPanel();
 	private JLabel header;
 
-	private JPanel genderPanel = new JPanel();
+	final private JPanel genderPanel = new JPanel();
 	private JLabel genderL;
 	private final String[] genderChoise = {"Male", "Female"};
 	private JComboBox genderComboBox = new JComboBox(genderChoise);
 
-	private JPanel heightPanel = new JPanel();
+	final private JPanel heightPanel = new JPanel();
 	private JSlider heightSlider;
 	private JLabel heightL;
 
-	private JPanel bodyPanel = new JPanel();
+	final private JPanel bodyPanel = new JPanel();
 	private final String[] bodyChoise = {"Small", "Medium","Large"};
 	private JComboBox bodyComboBox = new JComboBox(bodyChoise);
 
-	private JPanel weightPanel = new JPanel();
+	final private JPanel weightPanel = new JPanel();
 	private JTextField weight = new JTextField(10);
 
-	private JPanel agePanel = new JPanel();
+	final private JPanel agePanel = new JPanel();
 	private JTextField age = new JTextField(10); 
 	
 //	private JPanel calcPanel = new JPanel();
@@ -33,18 +33,19 @@ public class BMIView extends JFrame{
 
 		// Setting up BMIView
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(500,500);
-
+		this.setSize(700,700);
+		
 
 		JPanel bmiPanel = new JPanel();
-
+		bmiPanel.setLayout(new GridLayout(6, 1));
+		
 		/*
 		 * Header Panel
 		 */
-
 		header = new JLabel ("Welcome to BMI Calculator!");
 		topPanel.add(header);
 		topPanel.setVisible(true);
+		
 
 		/*
 		 * Gender Panel
@@ -53,6 +54,7 @@ public class BMIView extends JFrame{
 		genderPanel.add(genderL);
 		genderPanel.add(genderComboBox);
 		genderPanel.setVisible(true);
+		
 
 		/*
 		 * Height Panel
@@ -74,24 +76,28 @@ public class BMIView extends JFrame{
 		heightPanel.add( new JLabel ("Height: "));
 		heightPanel.add(heightSlider);
 		heightPanel.add(heightL);
+		heightPanel.setVisible(true);
 
 		/*
 		 * Body Panel
 		 */
 		bodyPanel.add(new JLabel ("Body-Frame: "));
 		bodyPanel.add(bodyComboBox);
+		bodyPanel.setVisible(true);
 
 		/*
 		 * Weight Panel
 		 */
 		weightPanel.add(new JLabel ("Weight: "));
 		weightPanel.add(weight);
+		weightPanel.setVisible(true);
 
 		/*
 		 * Age Panel
 		 */
 		agePanel.add(new JLabel ("Age: "));
 		agePanel.add(age);
+		agePanel.setVisible(true);
 		
 		/*
 		 * Calculation Panel
