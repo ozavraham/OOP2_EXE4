@@ -66,7 +66,7 @@ public class BMIView extends JFrame{
 		/*
 		 * Height Panel
 		 */
-		heightL = new JLabel("");
+		heightL = new JLabel("100 cm");
 		heightSlider = new JSlider();
 		heightSlider.setMajorTickSpacing(50);
 		heightSlider.setMinorTickSpacing(15);
@@ -127,27 +127,22 @@ public class BMIView extends JFrame{
 	}
 	
 	public String getGender() {
-		System.out.println(this.genderComboBox.getSelectedItem());
 		return this.genderComboBox.getSelectedItem().toString();
 	}
 	
 	public int getHeight() {
-		System.out.println(this.heightSlider.getValue());
 		return this.heightSlider.getValue();
 	}
 	
 	public String getBodyFrame() {
-		System.out.println(this.bodyComboBox.getSelectedItem());
 		return this.bodyComboBox.getSelectedItem().toString();
 	}
 	
 	public String getWeight() {
-		System.out.println(this.weight.getText());
 		return this.weight.getText();
 	}
 	
 	public String getAge() {
-		System.out.println(this.age.getText());
 		return this.age.getText();
 	}
 	
