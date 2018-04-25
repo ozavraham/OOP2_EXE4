@@ -29,7 +29,7 @@ public class BMIView extends JFrame{
 	private JTextField age = new JTextField(10); 
 	
 	final private Panel calcPanel = new Panel();
-	final private JButton confirm = new JButton ("Click to calculate BMI!");
+	final public JButton confirm = new JButton ("Click to calculate BMI!");
 	public JLabel result1 = new JLabel ("");
 	public JLabel result2 = new JLabel ("");
 			
@@ -51,6 +51,7 @@ public class BMIView extends JFrame{
 		/*
 		 * Header Panel
 		 */
+		
 		topPanel.add(header);
 		topPanel.setVisible(true);
 
@@ -108,7 +109,6 @@ public class BMIView extends JFrame{
 		/*
 		 * Calculation Panel
 		 */
-		
 		calcPanel.add(confirm);
 		calcPanel.add(result1);
 		calcPanel.add(result2);
