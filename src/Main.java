@@ -1,7 +1,10 @@
 public class Main {
 
 	public static void main(String[] args) {
-		BMIView b = new BMIView();
+		System.out.println("Starting program");
+		BMIController control = new BMIController (new BMIView(),new BMIModel());
+		
+		
 	}
 
 }

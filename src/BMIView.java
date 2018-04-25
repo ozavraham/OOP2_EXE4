@@ -109,6 +109,7 @@ public class BMIView extends JFrame{
 		/*
 		 * Calculation Panel
 		 */
+		
 		calcPanel.add(confirm);
 		calcPanel.add(result1);
 		calcPanel.add(result2);
@@ -126,25 +127,40 @@ public class BMIView extends JFrame{
 	}
 	
 	public String getGender() {
+		System.out.println(this.genderComboBox.getSelectedItem());
 		return this.genderComboBox.getSelectedItem().toString();
 	}
 	
 	public int getHeight() {
+		System.out.println(this.heightSlider.getValue());
 		return this.heightSlider.getValue();
 	}
 	
 	public String getBodyFrame() {
+		System.out.println(this.bodyComboBox.getSelectedItem());
 		return this.bodyComboBox.getSelectedItem().toString();
 	}
 	
-	public int getWeight() {
-		return Integer.parseInt(this.weight.getText());
+	public String getWeight() {
+		System.out.println(this.weight.getText());
+		return this.weight.getText();
 	}
 	
-	public int getAge() {
-		return Integer.parseInt(this.age.getText());
+	public String getAge() {
+		System.out.println(this.age.getText());
+		return this.age.getText();
+	}
+	
+	public Panel getPanel() {
+		return this.calcPanel;
+	}
+	
+	public void addCalculationListener(ActionListener event) {
+		this.confirm.addActionListener(event);
 	}
 
 }
+
+
 
 

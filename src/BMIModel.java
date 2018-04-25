@@ -3,7 +3,9 @@ public class BMIModel {
 	private double bmicalc;
 	private String weightStatus = "";
 	
-	public void calcBMI(int height, int weight) {
+	
+	/* Need to fix calculation!*/
+	public void calcBMI(double height, double weight) {
 		this.bmicalc = 1.3 * (weight/Math.pow(height, 2.5));
 		if (this.bmicalc < 15) this.weightStatus= "Anorexic";
 		else if (this.bmicalc >= 15 && this.bmicalc < 18.5) this.weightStatus= "Underwight";
