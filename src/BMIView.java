@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BMIView extends JFrame{
