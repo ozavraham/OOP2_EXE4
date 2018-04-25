@@ -11,7 +11,7 @@ public class BMIView extends JFrame{
 	final private JPanel genderPanel = new JPanel();
 	private JLabel genderL;
 	private final String[] genderChoise = {"Male", "Female"};
-	private JComboBox genderComboBox = new JComboBox(genderChoise);
+	private JComboBox<String> genderComboBox = new JComboBox<String>(genderChoise);
 
 	final private JPanel heightPanel = new JPanel();
 	private JSlider heightSlider;
@@ -19,7 +19,7 @@ public class BMIView extends JFrame{
 
 	final private JPanel bodyPanel = new JPanel();
 	final private String[] bodyChoise = {"Small", "Medium","Large"};
-	private JComboBox bodyComboBox = new JComboBox(bodyChoise);
+	private JComboBox<String> bodyComboBox = new JComboBox<String>(bodyChoise);
 
 	final private JPanel weightPanel = new JPanel();
 	private JTextField weight = new JTextField(10);
