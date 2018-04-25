@@ -10,8 +10,10 @@ public class BMIView extends JFrame{
 
 	final private JPanel genderPanel = new JPanel();
 	private JLabel genderL;
-	private final String[] genderChoise = {"Male", "Female"};
-	private JComboBox<String> genderComboBox = new JComboBox<String>(genderChoise);
+	private JRadioButton maleButton = new JRadioButton("Male");
+	private JRadioButton femaleButton = new JRadioButton("Female");
+	ButtonGroup genderGroup;
+
 
 	final private JPanel heightPanel = new JPanel();
 	private JSlider heightSlider;
@@ -27,11 +29,23 @@ public class BMIView extends JFrame{
 	final private JPanel agePanel = new JPanel();
 	private JTextField age = new JTextField(10); 
 	
+	
+	/* Need to add PA Panel for ERR Calculation */ 
+	final private JPanel PAPanel = new JPanel();
+	private Component paLabel = new JLabel ("Pyhisical Activity Level:");
+	private JRadioButton lowActivityButton = new JRadioButton("Inactive");
+	private JRadioButton mediumActivityButton = new JRadioButton("Moderately Active");
+	private JRadioButton highActivityButton = new JRadioButton("Extremely Active");
+	ButtonGroup activityGroup;
+	
+	
+	
+	
 	final private Panel calcPanel = new Panel();
 	final public JButton confirm = new JButton ("Click to calculate BMI!");
-	public JLabel result1 = new JLabel ("");
-	public JLabel result2 = new JLabel ("");
+	
 			
+	
 	
 //	private JPanel calcPanel = new JPanel();
 //	private JButton calc;
@@ -45,7 +59,7 @@ public class BMIView extends JFrame{
 		
 		
 		Panel bmiPanel = new Panel();
-		bmiPanel.setLayout(new GridLayout(8, 1));
+		bmiPanel.setLayout(new GridLayout(9, 1));
 		
 		/*
 		 * Header Panel
@@ -58,14 +72,18 @@ public class BMIView extends JFrame{
 		 * Gender Panel
 		 */
 		genderL = new JLabel ("Gender: ");
+		genderGroup = new ButtonGroup();
+		genderGroup.add(maleButton);
+		genderGroup.add(femaleButton);
 		genderPanel.add(genderL);
-		genderPanel.add(genderComboBox);
+		genderPanel.add(maleButton);
+		genderPanel.add(femaleButton);
 		genderPanel.setVisible(true);
 
 		/*
 		 * Height Panel
 		 */
-		heightL = new JLabel("100 cm");
+		heightL = new JLabel("100 cm"); // Default value
 		heightSlider = new JSlider();
 		heightSlider.setMajorTickSpacing(50);
 		heightSlider.setMinorTickSpacing(15);
@@ -106,12 +124,28 @@ public class BMIView extends JFrame{
 		agePanel.setVisible(true);
 	
 		/*
+		 * PA Panel
+		 */
+		activityGroup = new ButtonGroup();
+		activityGroup.add(lowActivityButton);
+		activityGroup.add(mediumActivityButton);;
+		activityGroup.add(highActivityButton);
+		PAPanel.add(paLabel);
+		PAPanel.add(lowActivityButton);
+		PAPanel.add(mediumActivityButton);
+		PAPanel.add(highActivityButton);	
+		PAPanel.setVisible(true);
+		
+		
+		/*
 		 * Calculation Panel
 		 */
 		
 		calcPanel.add(confirm);
-		calcPanel.add(result1);
-		calcPanel.add(result2);
+		
+		/*
+		 * Main Panel layout
+		 */
 		
 		bmiPanel.add(topPanel);
 		bmiPanel.add(genderPanel);
@@ -119,6 +153,7 @@ public class BMIView extends JFrame{
 		bmiPanel.add(bodyPanel);
 		bmiPanel.add(weightPanel);
 		bmiPanel.add(agePanel);
+		bmiPanel.add(PAPanel);
 		bmiPanel.add(calcPanel);
 		bmiPanel.setVisible(true);
 		this.add(bmiPanel);
@@ -126,7 +161,7 @@ public class BMIView extends JFrame{
 	}
 	
 	public String getGender() {
-		return this.genderComboBox.getSelectedItem().toString();
+		return this.genderGroup.getSelection().toString();
 	}
 	
 	public int getHeight() {
@@ -151,6 +186,10 @@ public class BMIView extends JFrame{
 	
 	public void addCalculationListener(ActionListener event) {
 		this.confirm.addActionListener(event);
+	}
+	
+	public String getPA() {
+		return this.activityGroup.getSelection().toString();
 	}
 
 }
