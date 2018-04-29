@@ -6,7 +6,8 @@ import java.awt.event.ActionListener;
 public class BMIView extends JFrame{
 
 	final private  JPanel topPanel = new JPanel();
-	final private  JLabel header= new JLabel ("Welcome to BMI Calculator!");;
+	final private  JLabel header = new JLabel ("Welcome to BMI Calculator!");;
+	final private JLabel description = new JLabel("This calculator computes the body mass index and rates it appropriately for men, women and children");;
 
 	final private JPanel genderPanel = new JPanel();
 	private JLabel genderL;
@@ -38,7 +39,10 @@ public class BMIView extends JFrame{
 	private JRadioButton highActivityButton = new JRadioButton("Extremely Active");
 	ButtonGroup activityGroup;
 	
-	
+	private JPanel westPanel;
+	private JPanel centerPanel;
+	private JPanel eastPanel;
+	private JPanel southPanel;
 	
 	
 	final private Panel calcPanel = new Panel();
@@ -54,18 +58,20 @@ public class BMIView extends JFrame{
 
 		// Setting up BMIView
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(400, 600);
+		this.setSize(600, 400);
 		this.setLayout(new BorderLayout());
-		
-		
 		Panel bmiPanel = new Panel();
-		bmiPanel.setLayout(new GridLayout(9, 1));
+		bmiPanel.setLayout(new BorderLayout());
 		
 		/*
 		 * Header Panel
 		 */
 		
+		description.setHorizontalAlignment(JLabel.CENTER);
+		header.setHorizontalAlignment(JLabel.CENTER);
+		topPanel.setLayout(new GridLayout(3,1));
 		topPanel.add(header);
+		topPanel.add(description);
 		topPanel.setVisible(true);
 
 		/*
@@ -130,6 +136,7 @@ public class BMIView extends JFrame{
 		activityGroup.add(lowActivityButton);
 		activityGroup.add(mediumActivityButton);;
 		activityGroup.add(highActivityButton);
+		PAPanel.setLayout(new GridLayout (4,1));
 		PAPanel.add(paLabel);
 		PAPanel.add(lowActivityButton);
 		PAPanel.add(mediumActivityButton);
@@ -147,16 +154,31 @@ public class BMIView extends JFrame{
 		 * Main Panel layout
 		 */
 		
-		bmiPanel.add(topPanel);
-		bmiPanel.add(genderPanel);
-		bmiPanel.add(heightPanel);
-		bmiPanel.add(bodyPanel);
-		bmiPanel.add(weightPanel);
-		bmiPanel.add(agePanel);
-		bmiPanel.add(PAPanel);
-		bmiPanel.add(calcPanel);
+		westPanel = new JPanel(new GridLayout(4,1));
+		westPanel.add(genderPanel);
+		westPanel.add(heightPanel);
+		westPanel.add(weightPanel);
+		westPanel.add(agePanel);
+		
+		eastPanel = new JPanel(new GridLayout(3, 1));
+		eastPanel.add(bodyPanel);
+		eastPanel.add(PAPanel);
+		
+		centerPanel = new JPanel();
+		centerPanel.setSize(50, 300);
+		
+		southPanel = new JPanel();
+		southPanel.add(calcPanel);
+		
+		bmiPanel.add(topPanel,BorderLayout.NORTH);
+		bmiPanel.add(westPanel,BorderLayout.WEST);
+		bmiPanel.add(eastPanel, BorderLayout.EAST);
+		bmiPanel.add(centerPanel,BorderLayout.CENTER);
+		bmiPanel.add(southPanel,BorderLayout.SOUTH);
+		
 		bmiPanel.setVisible(true);
 		this.add(bmiPanel);
+		this.pack();
 		this.setVisible(true);
 	}
 	
