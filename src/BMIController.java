@@ -6,22 +6,22 @@ public class BMIController {
 
 	protected BMIView theView;
 	protected BMIModel theModel;
-	
+
 	public BMIController(BMIView theView, BMIModel theModel) {
-		
+
 		this.theView = theView;
 		this.theModel = theModel;
 		this.theView.addCalculationListener(new SubmitListener());
-		
+
 	}
-	
+
 	public double getBMI() {
 		double height = (double)this.theView.getHeight();
 		double weight = Double.parseDouble(this.theView.getWeight());
 		this.theModel.calcBMI(height, weight);
 		return this.theModel.getBMI();
 	}
-	
+
 	//(String gender, int age, double weight, int height, double PA)
 	public double getEER() {
 		double PA;
@@ -41,11 +41,33 @@ public class BMIController {
 	class SubmitListener implements ActionListener {
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			JOptionPane.showMessageDialog(null, "Your BMI result is:" + getBMI() + "\n Your BMI Status is: " + theModel.getweightStatus() + "\n Your ERR is: " + getEER());
+		public void actionPerformed(ActionEvent event) {
+			try {
+				JOptionPane.showMessageDialog(null, "Your BMI result is:" + getBMI() + "\n Your BMI Status is: " + theModel.getweightStatus() + "\n Your ERR is: " + getEER());
+			}
+			catch (Exception exeption) {
+				String str = "The following erros occur:\n";
+				if (theView.getAge().equals("")) {
+					str+= "* Missing Age\n";
+				}
+				if (theView.getWeight().equals("")) {
+					str+="* Missing Weight\n";
+				}
+				if (theView.genderGroup.getSelection()==null) {
+					str+="* Missing Gender\n";
+				}
+				if (theView.activityGroup.getSelection()==null) {
+					str+="* Missing Activity selction\n";
+				}
+				JOptionPane.showMessageDialog(null, str);
+			}
+
+
+
+
 		}
 	}
-	
 
-	
+
+
 }

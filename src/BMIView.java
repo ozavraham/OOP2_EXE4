@@ -40,10 +40,11 @@ public class BMIView extends JFrame{
 	ButtonGroup activityGroup;
 	
 	private JPanel westPanel;
-	private JPanel centerPanel;
+//	private JPanel centerPanel;
 	private JPanel eastPanel;
 	private JPanel southPanel;
 	
+	final JLabel background;
 	
 	final private Panel calcPanel = new Panel();
 	final public JButton confirm = new JButton ("Click to calculate BMI!");
@@ -58,21 +59,29 @@ public class BMIView extends JFrame{
 
 		// Setting up BMIView
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(600, 400);
-		this.setLayout(new BorderLayout());
+		this.setSize(650, 400);
 		Panel bmiPanel = new Panel();
+		background = new JLabel(new ImageIcon("background.jpg"));
+		background.setLayout(new FlowLayout());
+		this.add(background);
 		bmiPanel.setLayout(new BorderLayout());
+		bmiPanel.add(background);
+		this.add(background);
+
 		
 		/*
 		 * Header Panel
 		 */
 		
 		description.setHorizontalAlignment(JLabel.CENTER);
+		description.setFont(new Font("Arial", Font.PLAIN, 12));
+		header.setFont(new Font("Arial", Font.BOLD, 16));
 		header.setHorizontalAlignment(JLabel.CENTER);
 		topPanel.setLayout(new GridLayout(3,1));
 		topPanel.add(header);
 		topPanel.add(description);
 		topPanel.setVisible(true);
+		topPanel.setOpaque(false);
 
 		/*
 		 * Gender Panel
@@ -85,6 +94,7 @@ public class BMIView extends JFrame{
 		genderPanel.add(maleButton);
 		genderPanel.add(femaleButton);
 		genderPanel.setVisible(true);
+		genderPanel.setOpaque(false);
 
 		/*
 		 * Height Panel
@@ -107,6 +117,7 @@ public class BMIView extends JFrame{
 		heightPanel.add(heightSlider);
 		heightPanel.add(heightL);
 		heightPanel.setVisible(true);
+		heightPanel.setOpaque(false);
 
 		/*
 		 * Body Panel
@@ -114,6 +125,7 @@ public class BMIView extends JFrame{
 		bodyPanel.add(new JLabel ("Body-Frame: "));
 		bodyPanel.add(bodyComboBox);
 		bodyPanel.setVisible(true);
+		bodyPanel.setOpaque(false);
 
 		/*
 		 * Weight Panel
@@ -121,6 +133,7 @@ public class BMIView extends JFrame{
 		weightPanel.add(new JLabel ("Weight: "));
 		weightPanel.add(weight);
 		weightPanel.setVisible(true);
+		weightPanel.setOpaque(false);
 
 		/*
 		 * Age Panel
@@ -128,6 +141,7 @@ public class BMIView extends JFrame{
 		agePanel.add(new JLabel ("Age: "));
 		agePanel.add(age);
 		agePanel.setVisible(true);
+		agePanel.setOpaque(false);
 	
 		/*
 		 * PA Panel
@@ -142,6 +156,7 @@ public class BMIView extends JFrame{
 		PAPanel.add(mediumActivityButton);
 		PAPanel.add(highActivityButton);	
 		PAPanel.setVisible(true);
+		PAPanel.setOpaque(false);
 		
 		
 		/*
@@ -159,31 +174,37 @@ public class BMIView extends JFrame{
 		westPanel.add(heightPanel);
 		westPanel.add(weightPanel);
 		westPanel.add(agePanel);
+		westPanel.setOpaque(false);
 		
 		eastPanel = new JPanel(new GridLayout(3, 1));
 		eastPanel.add(bodyPanel);
 		eastPanel.add(PAPanel);
+		eastPanel.setOpaque(false);
 		
-		centerPanel = new JPanel();
-		centerPanel.setSize(50, 300);
+//		centerPanel = new JPanel();
+//		centerPanel.setSize(50, 300);
 		
 		southPanel = new JPanel();
 		southPanel.add(calcPanel);
+		southPanel.setOpaque(false);
 		
 		bmiPanel.add(topPanel,BorderLayout.NORTH);
 		bmiPanel.add(westPanel,BorderLayout.WEST);
 		bmiPanel.add(eastPanel, BorderLayout.EAST);
-		bmiPanel.add(centerPanel,BorderLayout.CENTER);
 		bmiPanel.add(southPanel,BorderLayout.SOUTH);
 		
 		bmiPanel.setVisible(true);
+//		background.setLayout(new FlowLayout());
+//		bmiPanel.add(background);
 		this.add(bmiPanel);
 		this.pack();
 		this.setVisible(true);
 	}
 	
-	public String getGender() {
-		return this.genderGroup.getSelection().toString();
+	
+	public String getGender() throws IllegalArgumentException{
+		if (this.genderGroup.getSelection().toString()=="") throw new IllegalArgumentException();
+		else return this.genderGroup.getSelection().toString();
 	}
 	
 	public int getHeight() {
