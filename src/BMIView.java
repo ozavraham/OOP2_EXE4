@@ -31,10 +31,11 @@ public class BMIView{
 
 	private JPanel weightPanel;
 	private JTextField weight;
+	private JLabel value;
 
 	private JPanel agePanel;
 	private JTextField age; 
-	
+	private JLabel years; 
 	
 	private JPanel PAPanel;
 	private JLabel paLabel;
@@ -129,8 +130,10 @@ public class BMIView{
 		 */
 		weightPanel = new JPanel();
 		weight = new JTextField(10);
+		value = new JLabel("kg");
 		weightPanel.add(new JLabel ("Weight: "));
 		weightPanel.add(weight);
+		weightPanel.add(value);
 		weightPanel.setOpaque(false);
 		
 		/*
@@ -138,8 +141,10 @@ public class BMIView{
 		 */
 		agePanel = new JPanel();
 		age = new JTextField(10);
+		years = new JLabel("years");
 		agePanel.add(new JLabel ("Age: "));
 		agePanel.add(age);
+		agePanel.add(years);
 		agePanel.setOpaque(false);
 	
 		/*
@@ -209,7 +214,6 @@ public class BMIView{
 		frame.setVisible(true);
 	}
 	
-	
 	public String getGender() throws IllegalArgumentException{
 		if (this.genderGroup.getSelection().toString()=="") throw new IllegalArgumentException();
 		else return this.genderGroup.getSelection().toString();
@@ -223,12 +227,17 @@ public class BMIView{
 		return this.bodyComboBox.getSelectedItem().toString();
 	}
 	
-	public String getWeight() {
-		return this.weight.getText();
+	
+	public int getWeight() {
+		int weight = 0;
+		weight = Integer.parseInt(this.weight.getText());
+		return weight;
 	}
 	
-	public String getAge() {
-		return this.age.getText();
+	public int getAge(){
+		int age = 0;
+		age = Integer.parseInt(this.age.getText());
+		return age;
 	}
 	
 	public JPanel getPanel() {

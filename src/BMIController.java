@@ -17,8 +17,8 @@ public class BMIController {
 	}
 
 	public double getBMI() {
-		double height = (double)this.theView.getHeight();
-		double weight = Double.parseDouble(this.theView.getWeight());
+		double height = (double) this.theView.getHeight();
+		double weight = (double) this.theView.getWeight();
 		this.theModel.calcBMI(height, weight);
 		return this.theModel.getBMI();
 	}
@@ -31,41 +31,42 @@ public class BMIController {
 		else if (paStr.equals("Moderately Active")) PA = 1.27; 
 		else PA = 1.45;
 		int height = this.theView.getHeight();
-		double weight = Double.parseDouble(this.theView.getWeight());
+		double weight = (double)this.theView.getWeight();
 		String gender = this.theView.getGender();
-		int age = Integer.parseInt(this.theView.getAge());
+		int age =this.theView.getAge();
 		// Need to add PA Choose option
 		this.theModel.calcERR(gender, age, weight, height, PA);
 		return this.theModel.getERR();
 	}
 
 	class SubmitListener implements ActionListener {
-
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			try {
 				JOptionPane.showMessageDialog(null, "Your BMI result is:" + getBMI() + "\n Your BMI Status is: " + theModel.getweightStatus() + "\n Your ERR is: " + getEER());
 			}
 			catch (Exception exeption) {
-				String str = "The following erros occur:\n";
-				if (theView.getAge().equals("")) {
-					str+= "* Missing Age\n";
+				if (exeption instanceof NumberFormatException) {
+					JOptionPane.showMessageDialog(null, "Wrong input inserted!");
 				}
-				if (theView.getWeight().equals("")) {
-					str+="* Missing Weight\n";
+				else {
+					String str = "The following erros occur:\n";
+					if (theView.getAge()==0) {
+						str+= "* Missing Age\n";
+					}
+					if (theView.getWeight()==0) {
+						str+="* Missing Weight\n";
+					}
+					if (theView.genderGroup.getSelection()==null) {
+						str+="* Missing Gender\n";
+					}
+					if (theView.activityGroup.getSelection()==null) {
+						str+="* Missing Activity selction\n";
+					}
+					JOptionPane.showMessageDialog(null, str);
 				}
-				if (theView.genderGroup.getSelection()==null) {
-					str+="* Missing Gender\n";
-				}
-				if (theView.activityGroup.getSelection()==null) {
-					str+="* Missing Activity selction\n";
-				}
-				JOptionPane.showMessageDialog(null, str);
+				
 			}
-
-
-
-
 		}
 	}
 
