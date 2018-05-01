@@ -207,7 +207,7 @@ public class BMIView{
 		bmiPanel.add(southPanel,BorderLayout.SOUTH);
 		bmiPanel.setOpaque(false);	
 		
-		background = new JLabel(new ImageIcon("/Users/ozavraham/git/OOP2_EXE4/src/background.jpg"));
+		background = new JLabel(new ImageIcon("src/background.jpg"));
 		background.setSize(600, 500);
 		background.getPreferredSize();
 		background.add(bmiPanel);
