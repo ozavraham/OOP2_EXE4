@@ -1,104 +1,93 @@
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class BMIView extends JFrame{
 
-	final private  JPanel topPanel = new JPanel();
-	final private  JLabel header = new JLabel ("Welcome to BMI Calculator!");;
-	final private JLabel description = new JLabel("This calculator computes the body mass index and rates it appropriately for men, women and children");;
+	private  JPanel topPanel;
+	private  JLabel header;
+	private JLabel description;
 
-	final private JPanel genderPanel = new JPanel();
+	private JPanel genderPanel;
 	private JLabel genderL;
-	private JRadioButton maleButton = new JRadioButton("Male");
-	private JRadioButton femaleButton = new JRadioButton("Female");
+	private JRadioButton maleButton;
+	private JRadioButton femaleButton;
 	ButtonGroup genderGroup;
 
 
-	final private JPanel heightPanel = new JPanel();
+	private JPanel heightPanel;
 	private JSlider heightSlider;
 	private JLabel heightL;
 
-	final private JPanel bodyPanel = new JPanel();
-	final private String[] bodyChoise = {"Small", "Medium","Large"};
+	private JPanel bodyPanel;
+	private String[] bodyChoise = {"Small", "Medium","Large"};
 	private JComboBox<String> bodyComboBox = new JComboBox<String>(bodyChoise);
 
-	final private JPanel weightPanel = new JPanel();
-	private JTextField weight = new JTextField(10);
+	private JPanel weightPanel;
+	private JTextField weight;
 
-	final private JPanel agePanel = new JPanel();
-	private JTextField age = new JTextField(10); 
+	private JPanel agePanel;
+	private JTextField age; 
 	
 	
-	/* Need to add PA Panel for ERR Calculation */ 
-	final private JPanel PAPanel = new JPanel();
-	private Component paLabel = new JLabel ("Pyhisical Activity Level:");
-	private JRadioButton lowActivityButton = new JRadioButton("Inactive");
-	private JRadioButton mediumActivityButton = new JRadioButton("Moderately Active");
-	private JRadioButton highActivityButton = new JRadioButton("Extremely Active");
+	private JPanel PAPanel;
+	private JLabel paLabel;
+	private JRadioButton lowActivityButton;
+	private JRadioButton mediumActivityButton;
+	private JRadioButton highActivityButton;
 	ButtonGroup activityGroup;
 	
 	private JPanel westPanel;
-//	private JPanel centerPanel;
 	private JPanel eastPanel;
 	private JPanel southPanel;
 	
-	final JLabel background;
-	
-	final private Panel calcPanel = new Panel();
-	final public JButton confirm = new JButton ("Click to calculate BMI!");
-	
-			
-	
-	
-//	private JPanel calcPanel = new JPanel();
-//	private JButton calc;
+	private JPanel calcPanel;
+	public JButton confirm;
+	public JButton clear;
 
 	public BMIView(){
 
-		// Setting up BMIView
+		super ("BMI Calculation");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(650, 400);
-		Panel bmiPanel = new Panel();
-		background = new JLabel(new ImageIcon("background.jpg"));
-		background.setLayout(new FlowLayout());
-		this.add(background);
-		bmiPanel.setLayout(new BorderLayout());
-		bmiPanel.add(background);
-		this.add(background);
 
-		
 		/*
 		 * Header Panel
 		 */
-		
+		topPanel = new JPanel();
+		topPanel.setLayout(new GridLayout(3,1));
+		header = new JLabel ("Welcome to BMI Calculator!");;
+		description = new JLabel("This calculator computes the body mass index and rates it appropriately for both mens and womens.");
 		description.setHorizontalAlignment(JLabel.CENTER);
 		description.setFont(new Font("Arial", Font.PLAIN, 12));
 		header.setFont(new Font("Arial", Font.BOLD, 16));
 		header.setHorizontalAlignment(JLabel.CENTER);
-		topPanel.setLayout(new GridLayout(3,1));
 		topPanel.add(header);
 		topPanel.add(description);
-		topPanel.setVisible(true);
 		topPanel.setOpaque(false);
 
 		/*
 		 * Gender Panel
 		 */
+		
+		genderPanel = new JPanel();
 		genderL = new JLabel ("Gender: ");
 		genderGroup = new ButtonGroup();
+		maleButton = new JRadioButton("Male");
+		femaleButton = new JRadioButton("Female");
 		genderGroup.add(maleButton);
 		genderGroup.add(femaleButton);
 		genderPanel.add(genderL);
 		genderPanel.add(maleButton);
 		genderPanel.add(femaleButton);
-		genderPanel.setVisible(true);
 		genderPanel.setOpaque(false);
 
 		/*
 		 * Height Panel
 		 */
+		heightPanel = new JPanel();
 		heightL = new JLabel("100 cm"); // Default value
 		heightSlider = new JSlider();
 		heightSlider.setMajorTickSpacing(50);
@@ -107,8 +96,7 @@ public class BMIView extends JFrame{
 		heightSlider.setPaintLabels(true);
 		heightSlider.setMaximum(220);
 		heightSlider.setPaintTicks(true);
-		heightSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-			@Override
+		heightSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				heightL.setText(heightSlider.getValue() + " cm");
 			}
@@ -116,36 +104,42 @@ public class BMIView extends JFrame{
 		heightPanel.add(new JLabel ("Height: "));
 		heightPanel.add(heightSlider);
 		heightPanel.add(heightL);
-		heightPanel.setVisible(true);
 		heightPanel.setOpaque(false);
 
 		/*
 		 * Body Panel
 		 */
+		bodyPanel = new JPanel();
 		bodyPanel.add(new JLabel ("Body-Frame: "));
 		bodyPanel.add(bodyComboBox);
-		bodyPanel.setVisible(true);
 		bodyPanel.setOpaque(false);
 
 		/*
 		 * Weight Panel
 		 */
+		weightPanel = new JPanel();
+		weight = new JTextField(10);
 		weightPanel.add(new JLabel ("Weight: "));
 		weightPanel.add(weight);
-		weightPanel.setVisible(true);
 		weightPanel.setOpaque(false);
-
+		
 		/*
 		 * Age Panel
 		 */
+		agePanel = new JPanel();
+		age = new JTextField(10);
 		agePanel.add(new JLabel ("Age: "));
 		agePanel.add(age);
-		agePanel.setVisible(true);
 		agePanel.setOpaque(false);
 	
 		/*
 		 * PA Panel
 		 */
+		PAPanel = new JPanel();
+		paLabel = new JLabel ("Pyhisical Activity Level:");
+		lowActivityButton = new JRadioButton("Inactive");
+		mediumActivityButton = new JRadioButton("Moderately Active");
+		highActivityButton = new JRadioButton("Extremely Active");
 		activityGroup = new ButtonGroup();
 		activityGroup.add(lowActivityButton);
 		activityGroup.add(mediumActivityButton);;
@@ -155,20 +149,20 @@ public class BMIView extends JFrame{
 		PAPanel.add(lowActivityButton);
 		PAPanel.add(mediumActivityButton);
 		PAPanel.add(highActivityButton);	
-		PAPanel.setVisible(true);
 		PAPanel.setOpaque(false);
-		
 		
 		/*
 		 * Calculation Panel
 		 */
-		
+		calcPanel = new JPanel();
+		confirm = new JButton ("Click to calculate BMI!");
+		clear = new JButton ("Clear the panel!"); // need to add logic
 		calcPanel.add(confirm);
+		calcPanel.setOpaque(false);
 		
 		/*
 		 * Main Panel layout
 		 */
-		
 		westPanel = new JPanel(new GridLayout(4,1));
 		westPanel.add(genderPanel);
 		westPanel.add(heightPanel);
@@ -180,24 +174,25 @@ public class BMIView extends JFrame{
 		eastPanel.add(bodyPanel);
 		eastPanel.add(PAPanel);
 		eastPanel.setOpaque(false);
-		
-//		centerPanel = new JPanel();
-//		centerPanel.setSize(50, 300);
-		
+
 		southPanel = new JPanel();
 		southPanel.add(calcPanel);
 		southPanel.setOpaque(false);
 		
+		JPanel  bmiPanel = new JPanel();
+		bmiPanel.setLayout(new BorderLayout());
 		bmiPanel.add(topPanel,BorderLayout.NORTH);
 		bmiPanel.add(westPanel,BorderLayout.WEST);
 		bmiPanel.add(eastPanel, BorderLayout.EAST);
 		bmiPanel.add(southPanel,BorderLayout.SOUTH);
+		bmiPanel.setBackground(Color.yellow);
 		
-		bmiPanel.setVisible(true);
-//		background.setLayout(new FlowLayout());
-//		bmiPanel.add(background);
+		
+		this.setBackground(Color.red);
+		this.getContentPane().setBackground(Color.green);
+		this.setLayout(new FlowLayout());
 		this.add(bmiPanel);
-		this.pack();
+		this.pack(); //frame size is better without pack
 		this.setVisible(true);
 	}
 	
@@ -223,7 +218,7 @@ public class BMIView extends JFrame{
 		return this.age.getText();
 	}
 	
-	public Panel getPanel() {
+	public JPanel getPanel() {
 		return this.calcPanel;
 	}
 	
