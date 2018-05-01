@@ -73,10 +73,14 @@ public class BMIController {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			/*
-			 * need to add get to the textfields
-			 */
+			theView.getActivityGroup().clearSelection();
+			theView.getGenderGroup().clearSelection();
+			theView.getAgeField().setText("");
+			theView.getWeightField().setText("");
+			theView.getBodyComboBox().setSelectedIndex(0);
+			theView.getHeightSlider().setValue(100);
+			JOptionPane.showMessageDialog(null, "The panel has been cleared.");
+			
 
 		}
 	}

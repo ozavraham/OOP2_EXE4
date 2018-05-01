@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import javafx.scene.control.ComboBox;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -55,7 +57,6 @@ public class BMIView{
 		JFrame frame = new JFrame(); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new FlowLayout());
-		background = new JLabel(new ImageIcon("background.jpg"));
 		
 		/*
 		 * Header Panel
@@ -160,7 +161,7 @@ public class BMIView{
 		 */
 		calcPanel = new JPanel();
 		confirm = new JButton ("Click to calculate BMI!");
-		clear = new JButton ("Clear the panel!"); // need to add logic
+		clear = new JButton ("Clear the board!"); // need to add logic
 		calcPanel.add(confirm);
 		calcPanel.add(clear);
 		calcPanel.setOpaque(false);
@@ -190,10 +191,15 @@ public class BMIView{
 		bmiPanel.add(westPanel,BorderLayout.WEST);
 		bmiPanel.add(eastPanel, BorderLayout.EAST);
 		bmiPanel.add(southPanel,BorderLayout.SOUTH);
-		bmiPanel.setOpaque(true);
+		bmiPanel.setOpaque(false);	
 		
-		//frame.setContentPane(background);
-		frame.getContentPane().add(bmiPanel);
+		background = new JLabel(new ImageIcon("/Users/ozavraham/git/OOP2_EXE4/src/backgroundResised.jpg"));
+		background.setSize(600, 500);
+		background.getPreferredSize();
+		background.add(bmiPanel);
+		background.setLayout(new FlowLayout());
+		
+		frame.setContentPane(background);
 		frame.pack(); //frame size is better without pack
 		frame.setVisible(true);
 	}
@@ -234,6 +240,30 @@ public class BMIView{
 	
 	public String getPA() {
 		return this.activityGroup.getSelection().toString();
+	}
+	
+	public JTextField getAgeField() {
+		return this.age;
+	}
+	
+	public JTextField getWeightField() {
+		return this.weight;
+	}
+	
+	public ButtonGroup getActivityGroup() {
+		return this.activityGroup;
+	}
+	
+	public JComboBox<String> getBodyComboBox(){
+		return this.bodyComboBox;
+	}
+	
+	public ButtonGroup getGenderGroup() {
+		return this.genderGroup;
+	}
+	
+	public JSlider getHeightSlider() {
+		return this.heightSlider;
 	}
 
 }
