@@ -12,6 +12,7 @@ public class BMIController {
 		this.theView = theView;
 		this.theModel = theModel;
 		this.theView.addCalculationListener(new SubmitListener());
+		this.theView.addClearListener(new ClearListener());
 
 	}
 
@@ -37,7 +38,7 @@ public class BMIController {
 		this.theModel.calcERR(gender, age, weight, height, PA);
 		return this.theModel.getERR();
 	}
-	
+
 	class SubmitListener implements ActionListener {
 
 		@Override
@@ -68,6 +69,16 @@ public class BMIController {
 		}
 	}
 
+	class ClearListener implements ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			/*
+			 * need to add get to the textfields
+			 */
+
+		}
+	}
 
 }

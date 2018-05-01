@@ -5,7 +5,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class BMIView extends JFrame{
+public class BMIView{
 
 	private  JPanel topPanel;
 	private  JLabel header;
@@ -47,12 +47,16 @@ public class BMIView extends JFrame{
 	private JPanel calcPanel;
 	public JButton confirm;
 	public JButton clear;
+	
+	private JLabel background;
 
 	public BMIView(){
 
-		super ("BMI Calculation");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		JFrame frame = new JFrame(); 
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLayout(new FlowLayout());
+		background = new JLabel(new ImageIcon("background.jpg"));
+		
 		/*
 		 * Header Panel
 		 */
@@ -158,6 +162,7 @@ public class BMIView extends JFrame{
 		confirm = new JButton ("Click to calculate BMI!");
 		clear = new JButton ("Clear the panel!"); // need to add logic
 		calcPanel.add(confirm);
+		calcPanel.add(clear);
 		calcPanel.setOpaque(false);
 		
 		/*
@@ -179,21 +184,18 @@ public class BMIView extends JFrame{
 		southPanel.add(calcPanel);
 		southPanel.setOpaque(false);
 		
-		JPanel  bmiPanel = new JPanel();
+		JPanel bmiPanel = new JPanel();
 		bmiPanel.setLayout(new BorderLayout());
 		bmiPanel.add(topPanel,BorderLayout.NORTH);
 		bmiPanel.add(westPanel,BorderLayout.WEST);
 		bmiPanel.add(eastPanel, BorderLayout.EAST);
 		bmiPanel.add(southPanel,BorderLayout.SOUTH);
-		bmiPanel.setBackground(Color.yellow);
+		bmiPanel.setOpaque(true);
 		
-		
-		this.setBackground(Color.red);
-		this.getContentPane().setBackground(Color.green);
-		this.setLayout(new FlowLayout());
-		this.add(bmiPanel);
-		this.pack(); //frame size is better without pack
-		this.setVisible(true);
+		//frame.setContentPane(background);
+		frame.getContentPane().add(bmiPanel);
+		frame.pack(); //frame size is better without pack
+		frame.setVisible(true);
 	}
 	
 	
@@ -224,6 +226,10 @@ public class BMIView extends JFrame{
 	
 	public void addCalculationListener(ActionListener event) {
 		this.confirm.addActionListener(event);
+	}
+	
+	public void addClearListener(ActionListener event) {
+		this.clear.addActionListener(event);
 	}
 	
 	public String getPA() {
