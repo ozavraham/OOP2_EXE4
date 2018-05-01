@@ -11,7 +11,8 @@ public class BMIView{
 
 	private  JPanel topPanel;
 	private  JLabel header;
-	private JLabel description;
+	private JLabel description1;
+	private JLabel description2;
 
 	private JPanel genderPanel;
 	private JLabel genderL;
@@ -62,15 +63,19 @@ public class BMIView{
 		 * Header Panel
 		 */
 		topPanel = new JPanel();
-		topPanel.setLayout(new GridLayout(3,1));
+		topPanel.setLayout(new GridLayout(3, 1));
 		header = new JLabel ("Welcome to BMI Calculator!");;
-		description = new JLabel("This calculator computes the body mass index and rates it appropriately for both mens and womens.");
-		description.setHorizontalAlignment(JLabel.CENTER);
-		description.setFont(new Font("Arial", Font.PLAIN, 12));
-		header.setFont(new Font("Arial", Font.BOLD, 16));
+		description1 = new JLabel("This calculator computes the body mass index and the ERR and rates it appropriately for both mens and womens.");
+		description2 = new JLabel("Fill in the details in the appropiate location, click the Calculate button to calculate, Clear button to clear the panel.");
+		description1.setHorizontalAlignment(JLabel.CENTER);
+		description1.setFont(new Font("Arial", Font.PLAIN, 12));
+		description2.setHorizontalAlignment(JLabel.CENTER);
+		description2.setFont(new Font("Arial", Font.PLAIN, 12));
+		header.setFont(new Font("Arial", Font.BOLD, 20));
 		header.setHorizontalAlignment(JLabel.CENTER);
 		topPanel.add(header);
-		topPanel.add(description);
+		topPanel.add(description1);
+		topPanel.add(description2);
 		topPanel.setOpaque(false);
 
 		/*
@@ -193,7 +198,7 @@ public class BMIView{
 		bmiPanel.add(southPanel,BorderLayout.SOUTH);
 		bmiPanel.setOpaque(false);	
 		
-		background = new JLabel(new ImageIcon("/Users/ozavraham/git/OOP2_EXE4/src/backgroundResised.jpg"));
+		background = new JLabel(new ImageIcon("/Users/ozavraham/git/OOP2_EXE4/src/background.jpg"));
 		background.setSize(600, 500);
 		background.getPreferredSize();
 		background.add(bmiPanel);
