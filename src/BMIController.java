@@ -2,11 +2,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
+
 public class BMIController {
+
+	/** BMI Controller - The Controller part of the MVC .
+	 * 	The class that connect between the View and Model.
+	 */
 
 	protected BMIView theView;
 	protected BMIModel theModel;
 
+	/** Constructor
+	 * Adding the button's listener's to the buttun's
+	 * @param theView
+	 * @param theModel
+	 */
 	public BMIController(BMIView theView, BMIModel theModel) {
 
 		this.theView = theView;
@@ -16,6 +26,10 @@ public class BMIController {
 
 	}
 
+	/** getBMI()
+	 * Getting the required information from the view, and send it to the model for calculation.
+	 * @return the BMI value according to the input.
+	 */
 	public double getBMI() {
 		double height = (double) this.theView.getHeight();
 		double weight = (double) this.theView.getWeight();
@@ -23,7 +37,11 @@ public class BMIController {
 		return this.theModel.getBMI();
 	}
 
-	//(String gender, int age, double weight, int height, double PA)
+
+	/** getERR
+	 * Getting the required information from the view, and send it to the model for calculation.
+	 * @return the ERR value according to the input.
+	 */
 	public double getEER() {
 		double PA;
 		String paStr = this.theView.activityGroup.getSelection().toString();
@@ -39,14 +57,18 @@ public class BMIController {
 		return this.theModel.getERR();
 	}
 
+	/** SubmitListner
+	 * Sending the information to the calculation's methods above (getBMI() and getERR()).
+	 * Handel exeptions such as empty input or Missing input on one of the fields.
+	 */
 	class SubmitListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			try {
-				JOptionPane.showMessageDialog(null, "Your BMI result is:" + getBMI() + "\n Your BMI Status is: " + theModel.getweightStatus() + "\n Your ERR is: " + getEER());
+				JOptionPane.showMessageDialog(null, "Your BMI result is:" + getBMI() + "\n Your BMI Status is: " + theModel.getWeightStatus() + "\n Your ERR is: " + getEER());
 			}
-			catch (Exception exeption) {
-				if (exeption instanceof NumberFormatException) {
+			catch (Exception exception) {
+				if (exception instanceof NumberFormatException) {
 					JOptionPane.showMessageDialog(null, "Wrong input inserted!");
 				}
 				else {
@@ -65,13 +87,15 @@ public class BMIController {
 					}
 					JOptionPane.showMessageDialog(null, str);
 				}
-				
+
 			}
 		}
 	}
-
+	
+	/** ClearListner
+	 * Setting all the components value to defualt value.
+	 */
 	class ClearListener implements ActionListener{
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			theView.getActivityGroup().clearSelection();
@@ -81,7 +105,7 @@ public class BMIController {
 			theView.getBodyComboBox().setSelectedIndex(0);
 			theView.getHeightSlider().setValue(100);
 			JOptionPane.showMessageDialog(null, "The panel has been cleared.");
-			
+
 
 		}
 	}

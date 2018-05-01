@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 
 public class BMIView{
 
+	/** BMI View - The View part of the MVC .
+	 * 	The class that building the GUI to interact with the user.
+	 */
+	
 	private  JPanel topPanel;
 	private  JLabel header;
 	private JLabel description1;
@@ -227,6 +231,10 @@ public class BMIView{
 		return this.bodyComboBox.getSelectedItem().toString();
 	}
 	
+	/** getWeight()
+	 * @return the weight inside the weight TextField
+	 * @return 0 if no value was inserted.
+	 */
 	
 	public int getWeight() {
 		int weight = 0;
@@ -234,6 +242,10 @@ public class BMIView{
 		return weight;
 	}
 	
+	/** getAge()
+	 * @return the age inside the age TextField
+	 * @return 0 if no value was inserted.
+	 */
 	public int getAge(){
 		int age = 0;
 		age = Integer.parseInt(this.age.getText());
@@ -244,10 +256,16 @@ public class BMIView{
 		return this.calcPanel;
 	}
 	
+	/*
+	 * Adding the ActionLisetner to the Confirm Button.
+	 */
 	public void addCalculationListener(ActionListener event) {
 		this.confirm.addActionListener(event);
 	}
 	
+	/*
+	 * Adding the ActionLisetner to the Clear Button.
+	 */
 	public void addClearListener(ActionListener event) {
 		this.clear.addActionListener(event);
 	}
