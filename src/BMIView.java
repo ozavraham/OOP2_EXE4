@@ -52,6 +52,7 @@ public class BMIView{
 	private JPanel westPanel;
 	private JPanel eastPanel;
 	private JPanel southPanel;
+	private JPanel centerPanel;
 
 	private JPanel calcPanel;
 	public JButton confirm;
@@ -201,8 +202,9 @@ public class BMIView{
 		southPanel.add(calcPanel);
 		southPanel.setOpaque(false);
 		
-		JPanel centerPanel = new JPanel();
-		JLabel icon = new JLabel(new ImageIcon("icon.gif"));
+		centerPanel = new JPanel(new GridBagLayout());
+		JLabel icon = new JLabel(new ImageIcon("/Users/ozavraham/git/OOP2_EXE4/src/images/icon.jpg"));
+		icon.setSize(100, 100);
 		centerPanel.add(icon);
 		centerPanel.setOpaque(false);
 
