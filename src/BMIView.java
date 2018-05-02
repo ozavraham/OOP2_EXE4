@@ -3,6 +3,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.GridPane;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -67,7 +68,7 @@ public class BMIView{
 		/*
 		 * Header Panel
 		 */
-		topPanel = new JPanel();
+		topPanel = new JPanel(new GridBagLayout());
 		topPanel.setLayout(new GridLayout(3, 1));
 		header = new JLabel ("Welcome to BMI Calculator!");;
 		description1 = new JLabel("This calculator computes the body mass index and the ERR and rates it appropriately for both mens and womens.");
@@ -86,7 +87,7 @@ public class BMIView{
 		/*
 		 * Gender Panel
 		 */
-		genderPanel = new JPanel();
+		genderPanel = new JPanel(new GridBagLayout());
 		genderL = new JLabel ("Gender: ");
 		genderGroup = new ButtonGroup();
 		maleButton = new JRadioButton("Male");
@@ -96,13 +97,15 @@ public class BMIView{
 		genderPanel.add(genderL);
 		genderPanel.add(maleButton);
 		genderPanel.add(femaleButton);
+		genderL.setVerticalAlignment(JLabel.CENTER );
 		genderPanel.setOpaque(false);
 
 		/*
 		 * Height Panel
 		 */
-		heightPanel = new JPanel();
-		heightL = new JLabel("100 cm"); // Default value
+		heightPanel = new JPanel(new GridBagLayout());
+		heightPanel.setLayout(new GridLayout(2, 1,0,-25));
+		heightL = new JLabel ("Height: 100 cm"); // Default value
 		heightSlider = new JSlider();
 		heightSlider.setMajorTickSpacing(50);
 		heightSlider.setMinorTickSpacing(15);
@@ -112,18 +115,18 @@ public class BMIView{
 		heightSlider.setPaintTicks(true);
 		heightSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				heightL.setText(heightSlider.getValue() + " cm");
+				heightL.setText("Height: " + heightSlider.getValue() + " cm");
 			}
 		});
-		heightPanel.add(new JLabel ("Height: "));
-		heightPanel.add(heightSlider);
+		heightL.setHorizontalAlignment(JLabel.CENTER);
 		heightPanel.add(heightL);
+		heightPanel.add(heightSlider);
 		heightPanel.setOpaque(false);
 
 		/*
 		 * Body Panel
 		 */
-		bodyPanel = new JPanel();
+		bodyPanel = new JPanel(new GridBagLayout());
 		bodyPanel.add(new JLabel ("Body-Frame: "));
 		bodyPanel.add(bodyComboBox);
 		bodyPanel.setOpaque(false);
@@ -131,7 +134,7 @@ public class BMIView{
 		/*
 		 * Weight Panel
 		 */
-		weightPanel = new JPanel();
+		weightPanel = new JPanel(new GridBagLayout());
 		weight = new JTextField(10);
 		value = new JLabel("kg");
 		weightPanel.add(new JLabel ("Weight: "));
@@ -142,7 +145,7 @@ public class BMIView{
 		/*
 		 * Age Panel
 		 */
-		agePanel = new JPanel();
+		agePanel = new JPanel(new GridBagLayout());
 		age = new JTextField(10);
 		years = new JLabel("years");
 		agePanel.add(new JLabel ("Age: "));
@@ -166,7 +169,7 @@ public class BMIView{
 		PAPanel.add(paLabel);
 		PAPanel.add(lowActivityButton);
 		PAPanel.add(mediumActivityButton);
-		PAPanel.add(highActivityButton);	
+		PAPanel.add(highActivityButton);
 		PAPanel.setOpaque(false);
 
 		/*
@@ -182,31 +185,38 @@ public class BMIView{
 		/*
 		 * Main Panel layout
 		 */
-		westPanel = new JPanel(new GridLayout(4,1));
+		westPanel = new JPanel(new GridLayout(3,1));
 		westPanel.add(genderPanel);
 		westPanel.add(heightPanel);
 		westPanel.add(weightPanel);
-		westPanel.add(agePanel);
 		westPanel.setOpaque(false);
-
+		
 		eastPanel = new JPanel(new GridLayout(3, 1));
+		eastPanel.add(agePanel);
 		eastPanel.add(bodyPanel);
 		eastPanel.add(PAPanel);
 		eastPanel.setOpaque(false);
 
-		southPanel = new JPanel();
+		southPanel = new JPanel(new GridBagLayout());
 		southPanel.add(calcPanel);
 		southPanel.setOpaque(false);
+		
+		JPanel centerPanel = new JPanel();
+		JLabel icon = new JLabel(new ImageIcon("icon.gif"));
+		centerPanel.add(icon);
+		centerPanel.setOpaque(false);
 
+		
 		JPanel bmiPanel = new JPanel();
 		bmiPanel.setLayout(new BorderLayout());
 		bmiPanel.add(topPanel,BorderLayout.NORTH);
 		bmiPanel.add(westPanel,BorderLayout.WEST);
 		bmiPanel.add(eastPanel, BorderLayout.EAST);
 		bmiPanel.add(southPanel,BorderLayout.SOUTH);
+		bmiPanel.add(centerPanel,BorderLayout.CENTER); 
 		bmiPanel.setOpaque(false);	
 
-		background = new JLabel(new ImageIcon("src/background.jpg"));
+		background = new JLabel(new ImageIcon("src/images/background.jpg"));
 		background.setSize(600, 500);
 		background.getPreferredSize();
 		background.add(bmiPanel);
