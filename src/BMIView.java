@@ -86,7 +86,6 @@ public class BMIView{
 		/*
 		 * Gender Panel
 		 */
-		
 		genderPanel = new JPanel();
 		genderL = new JLabel ("Gender: ");
 		genderGroup = new ButtonGroup();
@@ -214,7 +213,7 @@ public class BMIView{
 		background.setLayout(new FlowLayout());
 		
 		frame.setContentPane(background);
-		frame.pack(); //frame size is better without pack
+		frame.pack();
 		frame.setVisible(true);
 	}
 	
