@@ -29,10 +29,12 @@ public class BMIController {
 	/** getBMI()
 	 * Getting the required information from the view, and send it to the model for calculation.
 	 * @return the BMI value according to the input.
+	 * @throws Exception 
 	 */
-	public double getBMI() {
+	public double getBMI() throws NumberFormatException{
+		if (theView.getAge()==0 | theView.getWeight()==0) throw new NumberFormatException();
 		double height = (double) this.theView.getHeight();
-		double weight = (double) this.theView.getWeight();
+		double weight = (double) this.theView.getWeight();	
 		this.theModel.calcBMI(height, weight);
 		return this.theModel.getBMI();
 	}
@@ -67,8 +69,8 @@ public class BMIController {
 			try {
 				JOptionPane.showMessageDialog(null, "Your BMI result is:" + getBMI() + "\n Your BMI Status is: " + theModel.getWeightStatus() + "\n Your ERR is: " + getEER());
 			}
-			catch (Exception exception) {
-				if (exception instanceof NumberFormatException) {
+			catch (NumberFormatException e) {
+				if (!theView.getAgeField().getText().trim().isEmpty()  | !theView.getWeightField().getText().trim().isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Wrong input inserted!");
 				}
 				else {
@@ -87,11 +89,10 @@ public class BMIController {
 					}
 					JOptionPane.showMessageDialog(null, str);
 				}
-
 			}
 		}
 	}
-	
+
 	/** ClearListner
 	 * Setting all the components value to defualt value.
 	 */

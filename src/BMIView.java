@@ -12,7 +12,7 @@ public class BMIView{
 	/** BMI View - The View part of the MVC .
 	 * 	The class that building the GUI to interact with the user.
 	 */
-	
+
 	private  JPanel topPanel;
 	private  JLabel header;
 	private JLabel description1;
@@ -40,22 +40,22 @@ public class BMIView{
 	private JPanel agePanel;
 	private JTextField age; 
 	private JLabel years; 
-	
+
 	private JPanel PAPanel;
 	private JLabel paLabel;
 	private JRadioButton lowActivityButton;
 	private JRadioButton mediumActivityButton;
 	private JRadioButton highActivityButton;
 	ButtonGroup activityGroup;
-	
+
 	private JPanel westPanel;
 	private JPanel eastPanel;
 	private JPanel southPanel;
-	
+
 	private JPanel calcPanel;
 	public JButton confirm;
 	public JButton clear;
-	
+
 	private JLabel background;
 
 	public BMIView(){
@@ -63,7 +63,7 @@ public class BMIView{
 		JFrame frame = new JFrame(); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new FlowLayout());
-		
+
 		/*
 		 * Header Panel
 		 */
@@ -138,7 +138,7 @@ public class BMIView{
 		weightPanel.add(weight);
 		weightPanel.add(value);
 		weightPanel.setOpaque(false);
-		
+
 		/*
 		 * Age Panel
 		 */
@@ -149,7 +149,7 @@ public class BMIView{
 		agePanel.add(age);
 		agePanel.add(years);
 		agePanel.setOpaque(false);
-	
+
 		/*
 		 * PA Panel
 		 */
@@ -168,17 +168,17 @@ public class BMIView{
 		PAPanel.add(mediumActivityButton);
 		PAPanel.add(highActivityButton);	
 		PAPanel.setOpaque(false);
-		
+
 		/*
 		 * Calculation Panel
 		 */
 		calcPanel = new JPanel();
-		confirm = new JButton ("Click to calculate BMI!");
-		clear = new JButton ("Clear the board!"); // need to add logic
+		confirm = new JButton ("Calculate!");
+		clear = new JButton ("Clear the board!");
 		calcPanel.add(confirm);
 		calcPanel.add(clear);
 		calcPanel.setOpaque(false);
-		
+
 		/*
 		 * Main Panel layout
 		 */
@@ -188,7 +188,7 @@ public class BMIView{
 		westPanel.add(weightPanel);
 		westPanel.add(agePanel);
 		westPanel.setOpaque(false);
-		
+
 		eastPanel = new JPanel(new GridLayout(3, 1));
 		eastPanel.add(bodyPanel);
 		eastPanel.add(PAPanel);
@@ -197,7 +197,7 @@ public class BMIView{
 		southPanel = new JPanel();
 		southPanel.add(calcPanel);
 		southPanel.setOpaque(false);
-		
+
 		JPanel bmiPanel = new JPanel();
 		bmiPanel.setLayout(new BorderLayout());
 		bmiPanel.add(topPanel,BorderLayout.NORTH);
@@ -205,94 +205,104 @@ public class BMIView{
 		bmiPanel.add(eastPanel, BorderLayout.EAST);
 		bmiPanel.add(southPanel,BorderLayout.SOUTH);
 		bmiPanel.setOpaque(false);	
-		
+
 		background = new JLabel(new ImageIcon("src/background.jpg"));
 		background.setSize(600, 500);
 		background.getPreferredSize();
 		background.add(bmiPanel);
 		background.setLayout(new FlowLayout());
-		
+
 		frame.setContentPane(background);
 		frame.pack();
 		frame.setVisible(true);
 	}
-	
+
 	public String getGender() throws IllegalArgumentException{
 		if (this.genderGroup.getSelection().toString()=="") throw new IllegalArgumentException();
 		else return this.genderGroup.getSelection().toString();
 	}
-	
+
 	public int getHeight() {
 		return this.heightSlider.getValue();
 	}
-	
+
 	public String getBodyFrame() {
 		return this.bodyComboBox.getSelectedItem().toString();
 	}
-	
+
 	/** getWeight()
 	 * @return the weight inside the weight TextField
 	 * @return 0 if no value was inserted.
 	 */
-	
+
 	public int getWeight() {
 		int weight = 0;
-		weight = Integer.parseInt(this.weight.getText());
+		try{
+			weight = Integer.parseInt(this.weight.getText());
+		}
+		catch (NumberFormatException e) {
+			return 0;
+		}
 		return weight;
 	}
-	
+
 	/** getAge()
 	 * @return the age inside the age TextField
 	 * @return 0 if no value was inserted.
 	 */
 	public int getAge(){
 		int age = 0;
-		age = Integer.parseInt(this.age.getText());
+		try{
+			age = Integer.parseInt(this.age.getText());
+		}
+		catch (NumberFormatException e) {
+			return 0;
+		}
 		return age;
 	}
-	
+
 	public JPanel getPanel() {
 		return this.calcPanel;
 	}
-	
+
 	/*
 	 * Adding the ActionLisetner to the Confirm Button.
 	 */
 	public void addCalculationListener(ActionListener event) {
 		this.confirm.addActionListener(event);
 	}
-	
+
 	/*
 	 * Adding the ActionLisetner to the Clear Button.
 	 */
 	public void addClearListener(ActionListener event) {
 		this.clear.addActionListener(event);
 	}
-	
+
 	public String getPA() {
 		return this.activityGroup.getSelection().toString();
 	}
-	
+
 	public JTextField getAgeField() {
 		return this.age;
 	}
-	
+
 	public JTextField getWeightField() {
 		return this.weight;
 	}
-	
+
 	public ButtonGroup getActivityGroup() {
 		return this.activityGroup;
 	}
-	
+
 	public JComboBox<String> getBodyComboBox(){
 		return this.bodyComboBox;
 	}
-	
+
 	public ButtonGroup getGenderGroup() {
 		return this.genderGroup;
 	}
-	
+
 	public JSlider getHeightSlider() {
 		return this.heightSlider;
 	}

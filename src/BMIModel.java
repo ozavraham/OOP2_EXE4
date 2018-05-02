@@ -6,9 +6,9 @@ public class BMIModel {
 	 * 	The logic behind all the calculator.
 	 */
 	
-	private double bmiCalc;
+	private double bmiCalc = 0;
+	private double errCalc = 0;
 	private String weightStatus = "";
-	private double errCalc;
 	
 	/* calcBMI()
 	 * Calculate the BMI value and assign it to bmiCalc.
