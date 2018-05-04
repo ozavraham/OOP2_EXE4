@@ -97,7 +97,7 @@ public class BMIController {
 	}
 
 	/** ClearListner
-	 * Setting all the components value to defualt value.
+	 * Setting all the components value to defualt.
 	 */
 	class ClearListener implements ActionListener{
 		@Override
@@ -109,8 +109,6 @@ public class BMIController {
 			theView.getBodyComboBox().setSelectedIndex(0);
 			theView.getHeightSlider().setValue(100);
 			JOptionPane.showMessageDialog(null, "The panel has been cleared.");
-
-
 		}
 	}
 
