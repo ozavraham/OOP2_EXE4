@@ -31,14 +31,17 @@ public class BMIView{
 	private JLabel heightL;
 
 	private JPanel bodyPanel;
+	private JLabel bodyL;
 	private String[] bodyChoise = {"Small", "Medium","Large"};
 	private JComboBox<String> bodyComboBox = new JComboBox<String>(bodyChoise);
 
 	private JPanel weightPanel;
+	private JLabel weightL;
 	private JTextField weight;
 	private JLabel value;
 
 	private JPanel agePanel;
+	private JLabel ageL;
 	private JTextField age; 
 	private JLabel years; 
 
@@ -59,6 +62,8 @@ public class BMIView{
 	public JButton clear;
 
 	private JLabel background;
+	
+	
 
 	public BMIView(){
 
@@ -90,6 +95,7 @@ public class BMIView{
 		 */
 		genderPanel = new JPanel(new GridBagLayout());
 		genderL = new JLabel ("Gender: ");
+		genderL.setFont(new Font("Arial", Font.BOLD,14));
 		genderGroup = new ButtonGroup();
 		maleButton = new JRadioButton("Male");
 		femaleButton = new JRadioButton("Female");
@@ -128,7 +134,9 @@ public class BMIView{
 		 * Body Panel
 		 */
 		bodyPanel = new JPanel(new GridBagLayout());
-		bodyPanel.add(new JLabel ("Body-Frame: "));
+		bodyL = new JLabel ("Body-Frame: ");
+		bodyL.setFont(new Font("Arial", Font.BOLD, 14));
+		bodyPanel.add(bodyL);
 		bodyPanel.add(bodyComboBox);
 		bodyPanel.setOpaque(false);
 
@@ -137,8 +145,10 @@ public class BMIView{
 		 */
 		weightPanel = new JPanel(new GridBagLayout());
 		weight = new JTextField(10);
+		weightL = new JLabel ("Weight: ");
+		weightL.setFont(new Font ("Arial", Font.BOLD, 14));
 		value = new JLabel("kg");
-		weightPanel.add(new JLabel ("Weight: "));
+		weightPanel.add(weightL);
 		weightPanel.add(weight);
 		weightPanel.add(value);
 		weightPanel.setOpaque(false);
@@ -149,7 +159,9 @@ public class BMIView{
 		agePanel = new JPanel(new GridBagLayout());
 		age = new JTextField(10);
 		years = new JLabel("years");
-		agePanel.add(new JLabel ("Age: "));
+		ageL = new JLabel ("Age: ");
+		ageL.setFont(new Font ("Arial", Font.BOLD, 14));
+		agePanel.add(ageL);
 		agePanel.add(age);
 		agePanel.add(years);
 		agePanel.setOpaque(false);
@@ -159,6 +171,7 @@ public class BMIView{
 		 */
 		PAPanel = new JPanel();
 		paLabel = new JLabel ("Pyhisical Activity Level:");
+		paLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		lowActivityButton = new JRadioButton("Inactive");
 		mediumActivityButton = new JRadioButton("Moderately Active");
 		highActivityButton = new JRadioButton("Extremely Active");
