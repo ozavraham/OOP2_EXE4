@@ -35,7 +35,7 @@ public class BMIModel {
 		DecimalFormat df = new DecimalFormat("#.##");
 		double err;
 		height = height/100; // cm -> meters
-		if (gender=="Male") {
+		if (gender.equals("Male")) {
 			err = (662 - (9.53*age) + (PA*((15.91*weight) + (539.6*height))));
 			String str = df.format(err);
 			err = Double.valueOf(str);

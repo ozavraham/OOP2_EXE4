@@ -98,7 +98,9 @@ public class BMIView{
 		genderL.setFont(new Font("Arial", Font.BOLD,14));
 		genderGroup = new ButtonGroup();
 		maleButton = new JRadioButton("Male");
+		maleButton.setActionCommand("Male");
 		femaleButton = new JRadioButton("Female");
+		femaleButton.setActionCommand("Female");
 		genderGroup.add(maleButton);
 		genderGroup.add(femaleButton);
 		genderPanel.add(genderL);
@@ -173,8 +175,11 @@ public class BMIView{
 		paLabel = new JLabel ("Pyhisical Activity Level:");
 		paLabel.setFont(new Font("Arial", Font.BOLD, 14));
 		lowActivityButton = new JRadioButton("Inactive");
+		lowActivityButton.setActionCommand("Inactive");
 		mediumActivityButton = new JRadioButton("Moderately Active");
+		mediumActivityButton.setActionCommand("Moderately Active");
 		highActivityButton = new JRadioButton("Extremely Active");
+		highActivityButton.setActionCommand("Extremely Active");
 		activityGroup = new ButtonGroup();
 		activityGroup.add(lowActivityButton);
 		activityGroup.add(mediumActivityButton);;
@@ -243,8 +248,7 @@ public class BMIView{
 	}
 
 	public String getGender() throws IllegalArgumentException{
-		if (this.genderGroup.getSelection().toString()=="") throw new IllegalArgumentException();
-		else return this.genderGroup.getSelection().toString();
+		return this.genderGroup.getSelection().getActionCommand();
 	}
 
 	public int getHeight() {
@@ -305,7 +309,7 @@ public class BMIView{
 	}
 
 	public String getPA() {
-		return this.activityGroup.getSelection().toString();
+		return this.activityGroup.getSelection().getActionCommand();
 	}
 
 	public JTextField getAgeField() {
@@ -338,7 +342,7 @@ public class BMIView{
 	 */
 	public boolean hasEmptyField() {
 		boolean isEmpty = false;
-		if (this.age.getText().trim().isEmpty() || this.weight.getText().trim().isEmpty() || this.genderGroup.getSelection()==null || this.activityGroup==null) {
+		if (this.age.getText().trim().isEmpty() || this.weight.getText().trim().isEmpty() || this.genderGroup.getSelection().getActionCommand().equals(null) || this.activityGroup.getSelection().getActionCommand().equals(null)) {
 			isEmpty = true;
 		}
 		return isEmpty;

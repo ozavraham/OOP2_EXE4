@@ -46,7 +46,7 @@ public class BMIController {
 	 */
 	public double getEER() {
 		double PA;
-		String paStr = this.theView.activityGroup.getSelection().toString();
+		String paStr = this.theView.activityGroup.getSelection().getActionCommand();
 		if (paStr.equals("Inactive")) PA = 1.0;
 		else if (paStr.equals("Moderately Active")) PA = 1.27; 
 		else PA = 1.45;
