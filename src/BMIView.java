@@ -216,7 +216,7 @@ public class BMIView{
 		southPanel.setOpaque(false);
 		
 		centerPanel = new JPanel(new GridBagLayout());
-		JLabel icon = new JLabel(new ImageIcon("/Users/ozavraham/git/OOP2_EXE4/src/images/icon.jpg"));
+		JLabel icon = new JLabel(new ImageIcon("./icon.jpg"));
 		icon.setSize(100, 100);
 		centerPanel.add(icon);
 		centerPanel.setOpaque(false);
@@ -231,7 +231,7 @@ public class BMIView{
 		bmiPanel.add(centerPanel,BorderLayout.CENTER); 
 		bmiPanel.setOpaque(false);	
 
-		background = new JLabel(new ImageIcon("src/images/background.jpg"));
+		background = new JLabel(new ImageIcon("./background.jpg"));
 		background.setSize(600, 500);
 		background.getPreferredSize();
 		background.add(bmiPanel);
