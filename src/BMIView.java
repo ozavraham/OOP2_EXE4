@@ -331,9 +331,19 @@ public class BMIView{
 	public JSlider getHeightSlider() {
 		return this.heightSlider;
 	}
+	
+	/**
+	 * Checking if some of the fields is missing information
+	 * @return true if its is, false otherwise
+	 */
+	public boolean hasEmptyField() {
+		boolean isEmpty = false;
+		if (this.age.getText().trim().isEmpty() || this.weight.getText().trim().isEmpty() || this.genderGroup.getSelection()==null || this.activityGroup==null) {
+			isEmpty = true;
+		}
+		return isEmpty;
+	}
 
 }
-
-
 
 

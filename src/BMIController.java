@@ -66,14 +66,9 @@ public class BMIController {
 	class SubmitListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			try {
-				JOptionPane.showMessageDialog(null, "Your BMI result is:" + getBMI() + "\n Your BMI Status is: " + theModel.getWeightStatus() + "\n Your ERR is: " + getEER());
-			}
-			catch (NumberFormatException e) {
-				if (!theView.getAgeField().getText().trim().isEmpty()  | !theView.getWeightField().getText().trim().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Wrong input inserted!");
-				}
-				else {
+
+			try{
+				if (theView.hasEmptyField()) {
 					String str = "The following erros occur:\n";
 					if (theView.getAge()==0) {
 						str+= "* Missing Age\n";
@@ -88,6 +83,14 @@ public class BMIController {
 						str+="* Missing Activity selction\n";
 					}
 					JOptionPane.showMessageDialog(null, str);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Your BMI result is:" + getBMI() + "\n Your BMI Status is: " + theModel.getWeightStatus() + "\n Your ERR is: " + getEER());
+				}
+			}
+			catch (NumberFormatException e) {
+				if (!theView.getAgeField().getText().trim().isEmpty()  | !theView.getWeightField().getText().trim().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Wrong input inserted!");
 				}
 			}
 		}
@@ -112,3 +115,4 @@ public class BMIController {
 	}
 
 }
+
