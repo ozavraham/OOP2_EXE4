@@ -11,13 +11,13 @@ Writing an application calculate the BMI and ERR values according to the physica
 
 
 // Goal //
-Use our new knowledge in Java GUI programming and design and implemnt a friendly GUI, while using the MVC pattern.
+Use our new knowledge in Java GUI programming and design and implement a friendly GUI, while using the MVC pattern.
 
 // Classes //
 Main - Creating new BMIController.
 BMIController - Connect between the Model and the View.
 BMIView - The GUI That interact with the user.
-BMIModel - The logic parts which resposible for the calculations.
+BMIModel - The logic parts which responsible for the calculations.
 Other files attached: Readme.txt
 
 // Definitions // 
@@ -32,7 +32,7 @@ Model-View-Controller: https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93
 4. Extract the zip file to your desktop.
 5. At the run window enter the project source folder likewise: "cd JavaEclipseWorkspace/Oz4
 6. Type "javac Main.java" (Wait for the compiler to finish compiling...)
-7. Type "java Main" and follow the instuctions and enjoy your calculations.
+7. Type "java Main" and insert the necessary details for the calculation.
 
 // Algorithms // 
-No algorithems were used in this exercise.
+No algorithms were used in this exercise.
