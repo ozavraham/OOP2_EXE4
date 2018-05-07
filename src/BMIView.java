@@ -342,7 +342,7 @@ public class BMIView{
 	 */
 	public boolean hasEmptyField() {
 		boolean isEmpty = false;
-		if (this.age.getText().trim().isEmpty() || this.weight.getText().trim().isEmpty() || this.genderGroup.getSelection().getActionCommand().equals(null) || this.activityGroup.getSelection().getActionCommand().equals(null)) {
+		if (this.age.getText().trim().isEmpty() || this.weight.getText().trim().isEmpty() || this.genderGroup.getSelection()==null || this.activityGroup.getSelection().getActionCommand().equals(null)) {
 			isEmpty = true;
 		}
 		return isEmpty;
